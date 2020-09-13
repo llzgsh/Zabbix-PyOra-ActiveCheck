@@ -699,14 +699,14 @@ class Main(Checks):
                         print ( "\n" )
                         Data = []
 
-            if not self.args.verbose:
-                result = ZabbixSender(use_config=True).send(Data)
-                print ( result )
-                Data = []
-                Data.append(
-                    ZabbixMetric(hostname, "failedchecks", result.failed))
-                result = ZabbixSender(use_config=True).send(Data)
-                print ( result )
+                    if not self.args.verbose:
+                        result = ZabbixSender(use_config=True).send(Data)
+                        print ( result )
+                        Data = []
+                        Data.append(
+                            ZabbixMetric(hostname, "failedchecks", result.failed))
+                        result = ZabbixSender(use_config=True).send(Data)
+                        print ( result )
 
         except IOError as err:
             print ( str(err) )
